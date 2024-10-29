@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rajasthan Travel Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(to right, #f7e8d5, #e1d9ff, #ffdde1, #d7ffeb);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        header {
+            text-align: center;
+            background-color: #b68973;
+            padding: 20px;
+            color: white;
+        }
+        h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        nav {
+            background-color: #ffdde1;
+            padding: 15px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 20px;
+            font-size: 1.2em;
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #6e0d25;
+            text-decoration: underline;
+        }
+        .carousel {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            height: 400px;
+        }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            display: none;
+            object-fit: cover;
+            transition: opacity 1s;
+        }
+        .carousel img.active {
+            display: block;
+            opacity: 1;
+        }
+        section {
+            padding: 40px 20px;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            color: #6e0d25;
+            border-bottom: 2px solid #b68973;
+            padding-bottom: 10px;
+        }
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .card {
+            flex: 1 1 250px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card h3 {
+            text-align: center;
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+        .card p {
+            padding: 0 10px;
+            text-align: justify;
+        }
+        footer {
+            text-align: center;
+            background-color: #6e0d25;
+            color: white;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+        .map {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .map iframe {
+            width: 100%;
+            height: 400px;
+            border: none;
+        }
+        .review-carousel {
+            padding: 20px;
+            text-align: center;
+            display: none;
+        }
+        .review-carousel.active {
+            display: block;
+        }
+        .review-carousel h3 {
+            color: #ff8c00;
+        }
+        .review-button {
+            margin: 20px;
+            padding: 10px 20px;
+            background-color: #ff8c00;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .review-button:hover {
+            background-color: #6e0d25;
+        }
+        .controls {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .control-button {
+            background-color: #b68973;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s;
+        }
+        .control-button:hover {
+            background-color: #6e0d25;
+        }
+    </style>
+</head>
+<<body onload="speakWelcomeMessage()">
+
+    <header>
+        <h1>Rajasthan Travel Guide</h1>
+    </header>
+
+    <nav>
+        <a href="#destinations" onclick="speak('Destinations')">Destinations</a>
+        <a href="#accommodations" onclick="speak('Accommodations')">Accommodations</a>
+        <a href="#markets" onclick="speak('Markets')">Markets</a>
+        <a href="#restaurants" onclick="speak('Restaurants & Cafes')">Restaurants & Cafes</a>
+        <a href="#reviews" onclick="speak('Reviews')">Reviews</a>
+    </nav>
+
+    <div class="carousel">
+        <img src="https://www.worldatlas.com/r/w768/upload/f8/a7/d8/shutterstock-744837868.jpg" alt="Udaipur" class="active" />
+        <img src="https://www.tourmyindia.com/states/rajasthan/image/best-places-to-visit-rajasthan.webp" alt="Jaipur" />
+        <img src="https://cdn.rajasthanstudio.com/2024/04/Copy-of-Jaisalmer-blog-5.jpg.webp" alt="Jaisalmer" />
+    </div>
+
+    <section id="destinations">
+        <h2 class="section-title">Top Destinations in Rajasthan</h2>
+        <div class="flex-container destinations">
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://www.tourmyindia.com/states/rajasthan/image/best-places-to-visit-rajasthan.webp" alt="Udaipur" />
+                
+                <h3>Udaipur - City of Lakes</h3>
+                <p>Known for its palaces, temples, and lakes. A scenic escape with rich history and culture.</p>
+            </div>
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://assets.vogue.in/photos/5ce41ea8b803113d138f5cd2/1:1/w_640,c_limit/Jaipur-Travel-Shopping-Restaurants.jpg" alt="Jaipur" />
+                
+                <h3>Jaipur - The Pink City</h3>
+                <p>A UNESCO World Heritage site filled with palaces, temples, and forts.</p>
+            </div>
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://cdn.rajasthanstudio.com/2024/04/Copy-of-Jaisalmer-blog-5.jpg.webp" alt="Jaisalmer Fort" />
+            
+                <h3>Jaisalmer - The Golden City</h3>
+                <p>Famous for its stunning sandstone architecture and vast desert landscapes.</p>
+            </div>
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://www.rishiindiatravels.com/images/Tour/medium/pushkar-tour-package.jpg" alt="Pushkar" />
+                
+                <h3>Pushkar - Holy City</h3>
+                <p>A sacred Hindu pilgrimage site known for its annual camel fair and the serene Pushkar Lake.</p>
+            </div>
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://www.indiadrivertours.com/wp-content/uploads/2019/08/chittorgarh-1.jpg" alt="Chittorgarh Fort" />
+                
+                <h3>Chittorgarh - Historical City</h3>
+                <p>Home to the largest fort in India and rich Rajput history.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="accommodations">
+        <h2 class="section-title">Luxury Accommodations</h2>
+        <div class="flex-container accommodations">
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/05/ec/03/df/facade-of-rambagh-palace.jpg?w=800&h=-1&s=1" alt="Rambagh Palace" />
+                
+                <h3>Rambagh Palace, Jaipur</h3>
+                <p>A palatial hotel offering a regal stay with vintage car rides, horse-drawn carriages, and more.</p>
+            </div>
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://i0.wp.com/ihaviationandtravel.com/wp-content/uploads/2021/03/img_8199-1-2.jpg?fit=1024%2C682&ssl=1" alt="Oberoi Rajvilas" />
+        
+                <h3>The Oberoi Rajvilas, Jaipur</h3>
+                <p>Luxury resort with private pools, tranquil gardens, and Rajasthani dining experiences.</p>
+            </div>
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://static.toiimg.com/img/103393129/Master.jpg" alt="Umaid Bhawan Palace" />
+                
+                <h3>Umaid Bhawan Palace, Jodhpur</h3>
+                <p>One of the world’s largest private residences, offering opulent rooms and royal experiences.</p>
+            </div>
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/439398432.jpg?k=88ec7552eb86f90272d04afc7fdc64b672eb9f1c630a9dbe53453efddd7cce6c&o=&hp=1" alt="RAAS Jodhpur" />
+                <h3>RAAS Jodhpur</h3>
+                <p>A boutique hotel set in a stunning 18th-century haveli, offering views of the Mehrangarh Fort.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="markets">
+        <h2 class="section-title">Popular Markets in Rajasthan</h2>
+        <p onclick="speakSectionText('Popular Markets in Rajasthan', this)">This section showcases the top markets...</p>
+        <div class="flex-container markets">
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://www.connectingtraveller.com/images/localtip/1626476047bazar4.jpg" alt="Johari Bazaar" />
+                <h3>Johari Bazaar, Jaipur</h3>
+                <p>Famous for Rajasthani jewelry, Meenakari, and Kundan work.</p>
+            </div>
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://www.holidify.com/images/cmsuploads/compressed/jaipur-market_20180606235612.jpg" alt="Bada Bazaar" />
+                <h3>Bada Bazaar, Udaipur</h3>
+                <p>From gold jewelry to Bandhani fabrics and leather items, this market has it all.</p>
+            </div>
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://www.rajasthanbhumitours.com/blog/wp-content/uploads/2024/09/Clock-Tower-and-Sardar-Market-The-Bustling-Heart-of-Jodhpurs-Old-City.jpg" alt="Clock Tower Market" />
+                <h3>Clock Tower Market, Jodhpur</h3>
+                <p>A vibrant market known for spices, handicrafts, and souvenirs.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="restaurants">
+        <h2 class="section-title">Famous Restaurants & Cafes</h2>
+        <div class="flex-container restaurants">
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://www.wbpstars.com/wp-content/uploads/2021/02/Suvarna-Mahal-photo6017502fd5de4.jpg" alt="Suvarna Mahal" />
+                <h3>Suvarna Mahal, Jaipur</h3>
+                <p>Known for its royal Rajasthani cuisine, set in a regal dining room in the Rambagh Palace.</p>
+            </div>
+            <div class="card" onclick="speakContainerText(this)">
+                <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/11/1a/7f/e0/facade.jpg?w=800&h=-1&s=1" alt="1559 AD" />
+                <h3>1559 AD, Udaipur</h3>
+                <p>Diners sit in the garden of this old world villa and enjoy views over the lake with Indian meals.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="reviews">
+        <h2 class="section-title">User Reviews</h2>
+        <div class="review-carousel active" onclick="speakReview(this)">
+            <h3>John Doe</h3>
+            <p>"An incredible experience! The beauty of Udaipur is unmatched."</p>
+        </div>
+        <div class="review-carousel active" onclick="speakReview(this)">
+            <h3>Jane Smith</h3>
+            <p>"Jaipur's forts are a must-see. Rich history and stunning architecture!"</p>
+        </div>
+        <div class="review-carousel active" onclick="speakReview(this)">
+            <h3>Priya Rathore</h3>
+            <p>"Jaisalmer's desert landscape is breathtaking. Don't miss the sunset!"</p>
+        </div>
+        <div class="review-carousel active" onclick="speakReview(this)">
+            <h3>Sam Wilson</h3>
+            <p>"Jaisalmer's golden sand dunes are mesmerizing. A must-visit for every traveler!"</p>
+        </div>
+        <div class="review-carousel active" onclick="speakReview(this)">
+            <h3>Arjun Sharma</h3>
+            <p>"Udaipur is a gem! The lakes and palaces create an enchanting atmosphere."</p>
+        </div>
+        <div class="review-carousel active" onclick="speakReview(this)">
+            <h3>Neha Verma</h3>
+            <p>"Pushkar's spiritual vibe is infectious. The sunset at the lake is breathtaking."</p>
+        </div>
+        <div class="review-carousel active" onclick="speakReview(this)">
+            <h3>Suresh Kumar</h3>
+            <p>"The history and architecture in Chittorgarh are awe-inspiring. A true reflection of Rajput valor!"</p>
+        </div>
+        <div class="review-carousel active" onclick="speakReview(this)">
+            <h3>Simran Kaur</h3>
+            <p>"Rajasthan's colorful markets are a shopper's paradise. Don't miss out on the handicrafts!"</p>
+        </div>
+        <div class="review-carousel active" onclick="speakReview(this)">
+            <h3>Ravi Singh</h3>
+            <p>"The food in Rajasthan is delicious! The local flavors are something you must experience."</p>
+        </div>
+        <div class="review-carousel active" onclick="speakReview(this)">
+            <h3>Deepika Rani</h3>
+            <p>"The hospitality in Rajasthan is unmatched. Every place feels like home!"</p>
+        </div>
+        <div class="review-carousel active" onclick="speakReview(this)">
+            <h3>Karan Yadav</h3>
+            <p>"Jodhpur's blue houses are stunning. The view from Mehrangarh Fort is breathtaking!"</p>
+        </div>
+        <button class="review-button" onclick="showNextReview()">Next Review</button>
+    </section>    
+
+
+    <footer>
+        <p>&copy; 2024 Rajasthan Travel Guide. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        const images = document.querySelectorAll('.carousel img');
+        let currentIndex = 0;
+        const imageInterval = setInterval(showNextImage, 3000);
+
+        function showNextImage() {
+            images[currentIndex].classList.remove('active');
+            currentIndex = (currentIndex + 1) % images.length;
+            images[currentIndex].classList.add('active');
+        }
+
+        const reviews = document.querySelectorAll('.review-carousel');
+        let currentReviewIndex = 0;
+        const reviewInterval = setInterval(showNextReview, 13000);
+
+        function showNextReview() {
+            reviews[currentReviewIndex].classList.remove('active');
+            currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
+            reviews[currentReviewIndex].classList.add('active');
+        }
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel img');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        setInterval(nextSlide, 13000); // Automatically switch slides every 5 seconds
+
+     // Function to initialize the speech synthesis with given text
+     function speak(text) {
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.lang = "en-US";
+        window.speechSynthesis.speak(speech);
+    }
+
+    // Welcome message on page load
+    window.onload = function() {
+        speak("Welcome to our Rajasthan Travel Guide, hello my name is Priya.");
+    };
+
+    // Function to read the text of clicked container (for accommodations, restaurants, etc.)
+    function speakContainerText(container) {
+        const title = container.querySelector("h3").innerText;
+        const description = container.querySelector("p").innerText;
+        speak(title + ". " + description);
+    }
+
+    // Function to speak the section title and paragraph (for sections like Markets)
+    function speakSectionText(title, section) {
+        const text = section.innerText;
+        speak(title + ". " + text);
+    }
+
+    // Function to read user reviews one by one
+    function speakReview(review) {
+        const reviewer = review.querySelector("h3").innerText;
+        const comment = review.querySelector("p").innerText;
+        speak(reviewer + " says: " + comment);
+    }
+</script>
+</body>
+</html>
