@@ -118,14 +118,20 @@
         .review-carousel {
             padding: 20px;
             text-align: center;
-            display: none;
+            display: none; /* Hide all reviews by default */
+            transition: opacity 0.5s ease;  /* Smooth fade effect */
+            opacity: 0;
         }
+        
         .review-carousel.active {
-            display: block;
+            display: block; /* Show only the active review */
+            opacity: 1;     /* Fade in the active review */
         }
+        
         .review-carousel h3 {
             color: #ff8c00;
         }
+        
         .review-button {
             margin: 20px;
             padding: 10px 20px;
@@ -223,6 +229,7 @@ footer {
     left: 0;
 }
 
+        
 .social-icons a:hover {
     color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -242,6 +249,7 @@ footer {
     background-color: #000000; /* GitHub black */
 }
 
+        
 .social-icons a.instagram:hover {
     background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); /* Instagram gradient */
 }
@@ -263,15 +271,50 @@ footer {
         padding: 12px;
     }
 }
+        
+
+
+        /* Back to Top button styling */
+        .back-to-top {
+            display: none; /* Hidden by default */
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        
+        /* Styling for the image inside the button */
+        .back-to-top img {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* Hover effect for button */
+        .back-to-top:hover {
+            background-color: #0056b3;
+        }
 
     </style>
 </head>
-<<body onload="speakWelcomeMessage()">
+<body onload="speakWelcomeMessage()">
 
     <header>
         <h1>Rajasthan Travel Guide</h1>
     </header>
 
+    
+    
     <nav>
         <a href="#destinations" onclick="speak('Destinations')">Destinations</a>
         <a href="#accommodations" onclick="speak('Accommodations')">Accommodations</a>
@@ -286,6 +329,7 @@ footer {
         <img src="https://cdn.rajasthanstudio.com/2024/04/Copy-of-Jaisalmer-blog-5.jpg.webp" alt="Jaisalmer" />
     </div>
 
+    
     <section id="destinations">
         <h2 class="section-title">Top Destinations in Rajasthan</h2>
         <div class="flex-container destinations">
@@ -297,7 +341,7 @@ footer {
             </div>
             <div class="card" onclick="speakContainerText(this)">
                 <img src="https://assets.vogue.in/photos/5ce41ea8b803113d138f5cd2/1:1/w_640,c_limit/Jaipur-Travel-Shopping-Restaurants.jpg" alt="Jaipur" />
-                
+
                 <h3>Jaipur - The Pink City</h3>
                 <p>A UNESCO World Heritage site filled with palaces, temples, and forts.</p>
             </div>
@@ -322,6 +366,8 @@ footer {
         </div>
     </section>
 
+    
+    
     <section id="accommodations">
         <h2 class="section-title">Luxury Accommodations</h2>
         <div class="flex-container accommodations">
@@ -351,6 +397,7 @@ footer {
         </div>
     </section>
 
+    
     <section id="markets">
         <h2 class="section-title">Popular Markets in Rajasthan</h2>
         <p onclick="speakSectionText('Popular Markets in Rajasthan', this)">This section showcases the top markets...</p>
@@ -373,6 +420,7 @@ footer {
         </div>
     </section>
 
+    
     <section id="restaurants">
         <h2 class="section-title">Famous Restaurants & Cafes</h2>
         <div class="flex-container restaurants">
@@ -389,6 +437,7 @@ footer {
         </div>
     </section>
 
+    
     <section id="reviews">
         <h2 class="section-title">User Reviews</h2>
         <div class="review-carousel active" onclick="speakReview(this)">
@@ -437,10 +486,14 @@ footer {
         </div>
         </section>    
 
+    
 
      <!-- Footer Section -->
      <footer>
         <div class="footer-container">
+            <button class="back-to-top" onclick="scrollToTop()">
+                <img src="up-arrow-icon-for-your-website-design-logo-app-ui-free-vector.jpg" alt="Up Arrow">
+            </button>
             <p>&copy; 2024 Rajasthan Travel Guide. All Rights Reserved.</p>
             <div class="social-icons">
                 <a href="https://www.linkedin.com/in/priya-rathore-ba33ab275/" target="_blank" class="icon linkedin">LinkedIn</a>
@@ -450,7 +503,9 @@ footer {
                 <a href="https://www.facebook.com/your-profile" target="_blank" class="icon facebook">Facebook</a>
             </div>
         </div>
+
     </footer>
+
 
     <script>
         const images = document.querySelectorAll('.carousel img');
@@ -463,34 +518,51 @@ footer {
             images[currentIndex].classList.add('active');
         }
 
-        const reviews = document.querySelectorAll('.review-carousel');
-        let currentReviewIndex = 0;
-        const reviewInterval = setInterval(showNextReview, 10000);
+// Select all review elements and initialize current index
+const reviews = document.querySelectorAll('.review-carousel');
+let currentReviewIndex = 0;
 
-        function showNextReview() {
-            reviews[currentReviewIndex].classList.remove('active');
-            currentReviewIndex = (currentReviewIndex + 1) % reviews.length;
-            reviews[currentReviewIndex].classList.add('active');
+// Function to show the current review and hide others
+function showReview(index) {
+    reviews.forEach((review, i) => {
+        review.classList.toggle('active', i === index);  // Toggle 'active' only on the current review
+    });
+}
+
+// Function to cycle to the next review
+function showNextReview() {
+    currentReviewIndex = (currentReviewIndex + 1) % reviews.length;  // Cycle index
+    showReview(currentReviewIndex);
+}
+
+// Start the review carousel, changing every 10 seconds
+showReview(currentReviewIndex);  // Show the first review immediately
+setInterval(showNextReview, 10000);  // Cycle every 10 seconds
+
+        // Get the button
+        const backToTopButton = document.querySelector('.back-to-top');
+
+        // Show the button when the user scrolls down
+        window.onscroll = function() {
+            if (window.scrollY > 200) { // Show button after scrolling 200px
+                backToTopButton.style.display = "block";
+            } else {
+                backToTopButton.style.display = "none";
+            }
+        };
+
+        // Function to scroll to the top smoothly
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         }
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.carousel img');
 
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            slides[index].classList.add('active');
-        }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
-            showSlide(currentSlide);
-        }
 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-            showSlide(currentSlide);
-        }
 
-        setInterval(nextSlide, 10000); 
+        
 
      // Function to initialize the speech synthesis with given text
      function speak(text) {
