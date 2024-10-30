@@ -104,7 +104,7 @@
             background-color: #6e0d25;
             color: white;
             padding: 20px 0;
-            margin-top: 20px;
+            margin-top: 18px;
         }
         .map {
             text-align: center;
@@ -156,9 +156,117 @@
         .control-button:hover {
             background-color: #6e0d25;
         }
+
+        /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #b68973;
+    color: #000000;
+    padding: 30px 0;
+    text-align: center;
+    border-top: 3px solid #ff0000;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.footer-container p {
+    font-size: 14px;
+    color: #000000;
+    margin-bottom: 15px;
+    font-family: Arial, sans-serif;
+}
+
+/* Social Icons Styling */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.social-icons a {
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover Effects */
+.social-icons a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: left 0.3s ease;
+}
+
+.social-icons a:hover::before {
+    left: 0;
+}
+
+.social-icons a:hover {
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px);
+}
+
+/* Social Icons Color Customization */
+.social-icons a.linkedin:hover {
+    background-color: #0e76a8; /* LinkedIn blue */
+}
+
+.social-icons a.twitter:hover {
+    background-color: #1707fa; /* Twitter blue */
+}
+
+.social-icons a.github:hover {
+    background-color: #333; /* GitHub black */
+}
+
+.social-icons a.instagram:hover {
+    background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045); /* Instagram gradient */
+}
+
+.social-icons a.facebook:hover {
+    background-color: #0e0088; /* Facebook blue */
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .social-icons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .social-icons a {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+    }
+}
+
     </style>
 </head>
-<body onload="speakWelcomeMessage()">
+<<body onload="speakWelcomeMessage()">
 
     <header>
         <h1>Rajasthan Travel Guide</h1>
@@ -327,11 +435,21 @@
             <h3>Karan Yadav</h3>
             <p>"Jodhpur's blue houses are stunning. The view from Mehrangarh Fort is breathtaking!"</p>
         </div>
-    </section>    
+        </section>    
 
 
-    <footer>
-        <p>&copy; 2024 Rajasthan Travel Guide. All Rights Reserved.</p>
+     <!-- Footer Section -->
+     <footer>
+        <div class="footer-container">
+            <p>&copy; 2024 Rajasthan Travel Guide. All Rights Reserved.</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/priya-rathore-ba33ab275/" target="_blank" class="icon linkedin">LinkedIn</a>
+                <a href="https://twitter.com/your-profile" target="_blank" class="icon twitter">Twitter</a>
+                <a href="https://github.com/your-profile" target="_blank" class="icon github">GitHub</a>
+                <a href="https://www.instagram.com/your-profile" target="_blank" class="icon instagram">Instagram</a>
+                <a href="https://www.facebook.com/your-profile" target="_blank" class="icon facebook">Facebook</a>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -347,7 +465,7 @@
 
         const reviews = document.querySelectorAll('.review-carousel');
         let currentReviewIndex = 0;
-        const reviewInterval = setInterval(showNextReview, 13000);
+        const reviewInterval = setInterval(showNextReview, 10000);
 
         function showNextReview() {
             reviews[currentReviewIndex].classList.remove('active');
@@ -372,7 +490,7 @@
             showSlide(currentSlide);
         }
 
-        setInterval(nextSlide, 13000); // Automatically switch slides every 5 seconds
+        setInterval(nextSlide, 10000); 
 
      // Function to initialize the speech synthesis with given text
      function speak(text) {
